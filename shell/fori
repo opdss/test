@@ -1,0 +1,10 @@
+#!/bin/bash
+
+var1=3
+
+for (( i=1;i<=20;i++ ))
+do
+	#var2=`echo 'scale=4;$i * $var1' | bc`
+	var3=`echo $i*$var1 | bc`
+	echo $i*$var1=$var3
+done

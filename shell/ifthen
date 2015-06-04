@@ -1,0 +1,11 @@
+#!/bin/bash
+
+user=root
+
+if grep $user /etc/passwd
+then
+	echo the bash file for $user :
+	ls -a /Users/wuxin/.b*
+else
+	echo no user:$user
+fi

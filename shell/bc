@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "scale=4;5/3" | bc
+
+echo $?

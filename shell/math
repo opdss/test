@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# 一个简单的计算加减乘除的命令
+
+# 纪录执行过程
+exec 3>>_math.log
+
+echo -n `date "+%Y-%m-%d%  %H:%M:%S"` >&3
+echo -n " $USER $ " >&3
+echo -n " '$0 $*' => " >&3
+
+if [ $# -lt 3 ]
+then
+	msg='你输入的参数有误！' 
+	echo $msg >&3
+	echo $msg
+	exit
+fi
+
+case $1 in 
+	-a) var1=$[ $2 + $3 ];var2='+';;
+	-b) var1=$[ $2 - $3 ];var2='-';;
+	-c) var1=`echo $2*$3 | bc`;var2='*';;
+	-d) var1=`echo $2/$3 | bc`;var2='/';;
+	-e) var1=$[ $2 % $3 ];var2='%';;
+	*)
+		msg='请输入正确的运算符:-a=+,-b=-,-c=*,-d=/,-e=%'
+		echo $msg >&3
+		echo $msg
+		exit
+esac
+
+msg="$2 $var2 $3 = $var1"
+echo "$msg" >&3
+echo "$msg"
